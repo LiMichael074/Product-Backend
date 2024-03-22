@@ -23,9 +23,10 @@ export const getAllcars = async (req: Request, res: Response) => {
 
 //add car
 export const addcar = async (req: Request, res: Response) => {
+    console.log(req.body);
     try {
         const newCar = await Car.create(req.body);
-        res.status(200).json({
+        res.status(201).json({
           status: "success",
           data: {
             car: newCar,
@@ -60,7 +61,7 @@ export const getCar = async (req: Request, res: Response) => {
 export const removeCar = async (req: Request, res: Response) => {
     try {
       const data = await Car.deleteOne({_id:req.params.id});
-      res.status(200).json({
+      res.status(204).json({
         status: "success",
       });
     } catch (err) {
